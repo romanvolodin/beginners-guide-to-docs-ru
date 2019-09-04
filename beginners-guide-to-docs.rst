@@ -1,313 +1,227 @@
-A beginner's guide to writing documentation
-===========================================
+Гид для новичков по написанию документации
+==========================================
 
-.. note:: This is a write up of a `Presentation <https://speakerdeck.com/ericholscher/writing-docs-a-beginners-guide-to-writing-documentation>`_ .
-          Please provide feedback to `@ericholscher`_.
-          You can view the source on `GitHub`_.
+.. note:: Это расшифровка `презентации <https://speakerdeck.com/ericholscher/writing-docs-a-beginners-guide-to-writing-documentation>`_ .
+          Обратную связь отправляйте сюда - `@ericholscher`_.
+          Исходники можно посмотреть на `GitHub`_.
 
 .. _@ericholscher: http://twitter.com/ericholscher
 .. _GitHub: https://github.com/writethedocs/www/blob/master/docs/guide/writing/beginners-guide-to-docs.rst
 
 ..
 
-	| Camera pans from stage left.
-	| It shows a text editor, open to a blank page.
-	| A person hunched in front, head to desk.
+	| Камера панорамирует слева направо.
+	| Мы видим текстовый редактор с открытой пустой страницей.
+	| Перед ней сгорбился человек, опустив голову.
 
-The scene above is well known to everyone who writes for a living;
-the mixed emotions of a blank page.
-Full of excitement, fresh with a new beginning.
-Yet also full of despair, where do you even start?
+Сцена выше хорошо знакома всем кто зарабатывает текстами на жизнь. Пустая страница вызывает смешанные чувства. Они полны предвкушения, свежести нового проекта. А ещё полны отчаяния,  растерянности - с чего начать?
 
-I am here to stop this scene from playing out.
+Я здесь чтобы остановить эту сцену.
 
-This is a guide to documenting your first project.
-The first time is always the hardest,
-and I hope this guide will get you started down the righteous path.
-At the end,
-you should have a project that is ready for public release.
+Это гид по документированию вашего первого проекта. Первый раз всегда самый трудный. Я надеюсь, что этот гид направит вас на верный путь. По окончании у вас будет проект, готовый к публичному релизу.
 
-Feel free to read this document straight through,
-or simply use it as a reference.
+Этот документ можно читать по порядку, а можно использовать как справочник.
 
 .. _why:
 
-Why write docs
---------------
+Зачем писать документацию
+-------------------------
 
-You will be using your code in 6 months
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Вы будете пользоваться своим кодом через полгода
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Code that you wrote 6 months ago is often indistinguishable from code that someone else has written.
-You will look upon a file with a fond sense of remembrance.
-Then a sneaking feeling of foreboding,
-knowing that someone less experienced, less wise, had written it.
+Код, написанный вами 6 месяцев назад, часто неотличим от кода, написанного кем-то другим. Вы будете смотреть на код с любовью и нежностью. Зачем появится ощущение, понимание, что это всё написал кто-то менее опытный, менее мудрый.
 
-As you go through this selfless act of untangling things that were obvious or clever months ago,
-you will start to empathize with your users.
-If only I had written down why I had done this.
-Life would be so much simpler.
-Documentation allows you to transfer the *why* behind code.
-Much in the same way code comments explain the *why*,
-and not the *how*,
-documentation serves the same purpose.
+Самоотверженно распутывая вещи, казавшийся очевидными или гениальными еще несколько месяцев назад, вы начнете сопереживать своим пользователям. Если бы я только записал почему я так сделал. Жизнь была бы куда проще. Документация позволяет передать это "почему". Как комментарии в коде объясняют "почему", а не "как", документация служет этой же цели.
 
-.. sidebar::  Sidebar on open source
+.. sidebar::  Замечание об open source
 
-	There is a magical feeling that happens when you release your code.
-	It comes in a variety of ways, but it always hits you the same.
-	*Someone is using my code?!*
-	A mix of terror and excitement.
+	Есть волшебное чувство, которое возникает каждый раз, когда вы выпускаете в мир свой код. Возникает по-разному, но бьет одинаково. *Кто-то пользуется моим кодом?!* Смесь ужаса и радости.
 
-		| I made something of value!
-		| What if it breaks?!
-		| I am a real open source developer!
-		| Oh god, someone else is using my code..
+		| Я сделал что-то полезное!
+		| А если всё сломается?!
+		| Я настоящий опенсорс разработчик!
+		| О божечки, моим кодом пользуется кто-то ещё...
 
-	Writing good documentation will help alleviate some of these fears.
-	A lot of this fear comes from putting something into the world.
-	My favorite quote about this is something along these lines:
+	Написание хорошей документации поможет смягчить страхи. Большая часть страха появляется, когда выпускаешь что-то в мир. Моя любимая цитата по этому поводу звучит как-то так:
 
-		| Fear is what happens when you're doing something important.
-		| If you are doing work that isn't scary,
-		| it isn't improving you or the world.
+		| Страх - это то, что появляется когда ты делаешь что-то важное.
+		| Если ты делаешь дело которое тебе не пугает,
+		| значит оно не сделает тебя или мир лучше.
 
-	Congrats on being afraid!
-	It means you're doing something important.
+	Поздравляю со страхом!
+	Это значит, что вы делаете что-то важное.
 
-You want people to use your code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Вы хотите, чтобы люди использовали ваш код
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You have written a piece of code,
-and released it into the world.
-You have done this because you think that others might find it useful.
-However,
-people need to understand why your code might be useful for them,
-before they decide to use it.
-Documentation tells people that this project is for them.
+Вы написали кусок кода и выпустили его в мир. Вы сделали это потому, что думаете, что кому-то он окажется полезен. Однако, людям надо понимать как ваш код может быть полезен, прежде, чем они решат использовать его. Документация расскажет людям, что этот проект именно то, что им нужно.
 
-	| If people don't know why your project exists,
-	| they won't use it.
-	| If people can't figure out how to install your code,
-	| they won't use it.
-	| If people can't figure out how to use your code,
-	| they won't use it.
+	| Если люди не знают почему существует ваш проект - они не будут им пользоваться.
+	| Если люди не могут разобраться как установить ваш проект - они не будут им  пользоваться.
+	| Если люди не могут разобраться как пользоваться вашим проектом - они не будут им пользоваться.
 
-There are a small number of people who will source dive and use any code out there.
-That is a vanishingly small number of people,
-compared to people who will use your code when properly documented.
-If you really love your project,
-document it,
-and let other people use it.
+Есть очень малое число людей, которые залезут в исходники и будут использовать любой код. Это число исчезающе мало по сравнению с количеством людей, которые будут пользоваться кодом когда он правильно задокументирован. Если вы действительно любите ваш проект - задокументируйте его и позвольте другим людям пользоваться им.
 
 
-You want people to help out
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Вы хотите, чтобы люди помогли
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open source is this magical thing right?
-You release code,
-and the code gnomes come and make it better for you.
+Open source волшебная штука, да? Вы релизите ваш код и волшебные гномы-программисты делают его лучше.
 
-Not quite.
+Не совсем.
 
-There are lots of ways that open source is amazing,
-but it doesn't exist outside the laws of physics.
-You have to put work in,
-to get work out.
+Есть много причин почему open source - это здорово. Но они не существуют вне законов физики. Чтобы совершить работу надо приложить силу.
 
-	| You only get contributions after you have put in a lot of work.
-	| You only get contributions after you have users.
-	| You only get contributions after you have documentation.
+	| Контрибуторы появится только когда вы вложите кучу сил.
+	| Контрибуторы появится только когда появятся пользователи.
+	| Контрибуторы появится только когда у вас будет документация.
 
-Documentation also provides a platform for your first contributions.
-A lot of people have never contributed before,
-and documentation changes are a lot less scary than code changes.
-If you don't have documentation,
-you will miss out on a whole class of contributors.
+Документация также предоставляет платформу для первых клнтрибуторов. Многие люди никогда не вносили свой вклад в чужие проекты, и менять документацию гораздо менее страшно, чем менять код. Если у вас нет документации, вы упускает целый пласт контрибуторов.
 
-You want your code to be better
+Вы хотите, чтобы ваш код стал лучше
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-It's really easy to have an idea in your head that sounds perfect,
-but the act of putting words to paper requires a distillation of thought that may not be so easy.
+Очень просто иметь гениальную идею, когда она в голове, но процесс перекладывания слов на бумагу требует дистилляции мыслей, а это может быть совсем не просто.
 
-Writing documentation improves the design of your code.
-Talking through your API and design decisions on paper allows you to think about them in a more formalized way.
-A nice side effect is that it allows people to contribute code that follows your original intentions as well.
+Написание документации улучшает дизайн кода. 
+Разговор через API и дизайнерские решения на бумаге позволит думать о них более формализованно. Как приятный побочный эффект, это позволит людям контрибутить код, который также следует изначальным идеям.
 
-You want to be a better writer
+Вы хотите быть лучше как технический писатель
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Writing documentation is a different form of writing than most people have experience with.
-Technical writing is an art that doesn't come naturally.
-Writing documentation will start you down the road to being a better technical writer,
-which is a useful skill to have as a programmer.
+Написание документации отличается от других форм писательства, с которыми сталкиваются большинство людей. Техническое писательство это искусство, которое не приходит само по себе. Написание документации направит вас по пути ведущему к становлению хорошим техписом, что является полезным навыком для программиста.
 
-Writing also becomes easier over time.
-If you don't write for many months,
-it is a lot harder to start writing again.
-Keeping your projects documented will keep you writing at a reasonable cadence.
+Писательство также становится проще со временем. Если вы не писали много месяцев, начинать заново гораздо труднее. Поддерживая документацию к проекту вы будете поддерживать скил писательства на необходимом уровне.
 
-Starting simple is the best way to achieve actual results.
-I will present a well-paved path to walk down,
-and after you have the basic idea,
-you can expand your scope.
-The tools should be powerful and easy to use.
-This removes obstacles to actually putting words on the page.
+Лучший способ достичь реальных результатов - начать с простого. Я покажу проторенную дорожку, и, когда вы ухватите суть, вы расширите свой скоуп (не смог подобрать синонима). Инструменты должны быть простыми и мощными. Это устраняет препятствия при переносе слов на страницу.
 
 .. _markup_languages:
 
-.. sidebar:: Sidebar on markup languages.
+.. sidebar:: Замечание о языках разметки.
 
-   The examples in this document are both valid `Markdown`_ and `reStructuredText`_.
-   reStructuredText is a bit harder to use,
-   but is more powerful.
-   I recommend that you check them both out,
-   and decide which you want to use going forward.
+   Примеры в этом документе валидны и на языке `Markdown`_, и на `reStructuredText`_.
+   reStructuredText чуть сложнее использовать, но он более мощный.
+   Я рекомендую попробовать оба языка и выбрать, какой больше нравится.
 
 .. _reStructuredText: http://sphinx-doc.org/rest.html#rst-primer
 .. _Markdown: http://daringfireball.net/projects/markdown/
 
-Version controlled plain text
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Простой текст под версионным контролем
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As programmers we live in a world of plain text.
-Our documentation tooling should be no exception.
-We want tools that turn plain text into pretty HTML.
-We also have some of the best tooling available for tracking changes to files.
-Why would we forgo using those tools when writing documentation?
-This workflow is powerful, and familiar to developers.
+Мы, как программисты, живём в мире простого текста. Наши инструменты документирования не должны быть исключением. Нам нужен инструмент, который превратит простой текст в прекрасный HTML. Также, у нас есть одни из лучших инструментов для отслеживания изменений в файлах. Почему мы должны забыть о них при написании документации? Этот рабочий процесс является мощным и знакомым разработчикам.
 
 
-Basic Example
+Небольшой пример
 ~~~~~~~~~~~~~
 
 ::
 
-	Resources
+	Ресурсы
 	---------
 
-	* Online documentation: http://docs.writethedocs.org/
-	* Conference: http://conf.writethedocs.org/
+	* Онлайн документация: http://docs.writethedocs.org/
+	* Конференция: http://conf.writethedocs.org/
 
-This will render into a header,
-with a list underneath it.
-The URLs will be hyperlinked automatically.
-It's easy to write,
-still makes sense as plain text,
-and renders nicely into HTML.
+Это текст отрендерится в заголовок и список под ним. URL станут ссылками автоматически. Текст легко писать, он читаем в виде простого текста и прекрасно превращается в HTML.
 
 README
 ~~~~~~
 
-Your first steps in documentation should go into your README.
-Code hosting services will render your README into HTML automatically if you provide the proper extension.
-It is also the first interaction that most users will have with your project.
-So having a solid README will serve your project well.
+Первые шаги в документации должны быть направлены в README. Сервисы по хранению исходников автоматически отрендерят ваш README в HTML, если вы укажете подходящее расширение. Также, README будет первой точкой соприкосновения большинства пользователей и вашего проекта. Хороший README пойдет на пользу вашему проекту.
 
-Some people even go as far as to `start your project with a README`_
+Некоторые вообще `начинают проект с создания README`_
 
-.. _start your project with a README: http://tom.preston-werner.com/2010/08/23/readme-driven-development.html
+.. _начинают проект с создания README: http://tom.preston-werner.com/2010/08/23/readme-driven-development.html
 
 .. _write:
 
-What to write
+Что писать
 -------------
 
-Now we're getting down to the brass tacks.
-Making sure that you give your users all the information that they need,
-but not too much.
+Теперь перейдем к деталям. Дайте пользователям всю необходимую информацию, но не более того.
 
-First, you need to ask yourself who you're writing for.
-At first,
-you generally just need to appeal to two audiences:
+Прежде всего, надо решить для кого вы пишите. По началу надо привлечь две аудитории:
 
-* Users
-* Developers
+* Пользователи
+* Разработчики
 
-Users are people who simply want to use your code,
-and don't care how it works.
-Developers are people who want to contribute back to your code.
+Пользователи - это люди которые просто хотят использовать ваш код, и им не важно как он работает. Разработчики - люди которые хотят вносить изменения в ваш код.
 
-What problem your project solves
+Какие задачи решает ваш проект
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A lot of people will come to your docs trying to figure out what exactly your project is. Someone will mention it, or they'll google a phrase randomly. You should explain what your project does and why it exists. Fabric_ does a great job of this.
+Многие люди придут в документацию в попытке разобраться, что такое ваш проект. Кто-то упомянул его в разговоре, или случайно нашли его в Гугле. Вы должны объяснить, что делает ваш проект и зачем существует. Fabric_ проделали отличную работу на эту тему.
 
 .. _Fabric: http://docs.fabfile.org/
 
-A small code example
+Небольшой пример кода
 ~~~~~~~~~~~~~~~~~~~~
 
-Show a telling example of what your project would normally be used for. Requests_ does a great example of this.
+Покажите небольшой пример, как обычно используется ваш проект. У Requests_ отличный пример.
 
 .. _Requests: http://docs.python-requests.org/en/latest/index.html
 
-A link to your code & issue tracker
+Ссылки на код и баг-трекер
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-People like to browse the code sometimes. They might be interested in filing bugs against the code for issues they've found. Make it really easy for people who want to contribute back to the project in any way possible. I think the `Python Guide`_ does a good job with the link to the code portion.
+Люди иногда любят поковыряться в коде. Может, они захотят исправить найденный баг (или неточность). Упростите жизнь людям, которые как-то хотят внести свой вклад. Мне кажется можно ориентироваться на `Python Guide`_.
 
 .. _Python Guide: http://docs.python-guide.org/en/latest/index.html
 
-Frequently Asked Questions (FAQ)
+Часто задаваемые вопросы (FAQ)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A lot of people have the same problems. If things happen all the time, you should probably fix your documentation or the code, so that the problems go away. However, there are always questions that get asked about your project, things that can't be changed, etc. Document those, and **keep it up to date**. FAQs are generally out of date, but when done well, they are a golden resource. Tastypie_ did a great job with this, with their "Cookbook" concept.
+Многие люди задают одни и те же вопросы. Если это происходит постоянно, то, вероятно, надо изменить документацию или код, чтобы исправить ситуацию. Однако, всегда будут вопросы о вашем проекте, о вещах, которые нельзя изменить и пр. Запишите их и **поддерживайте актуальными**. FAQ обычно устаревает, но, когда всё сделано правильно, становится золотой жилой. Tastypie_ сделали очень круто с их сборником рецептов.
 
 .. _Tastypie: http://django-tastypie.readthedocs.org/en/latest/cookbook.html
 
-How to get support
+Как получить помощь
 ~~~~~~~~~~~~~~~~~~
 
-Mailing list? IRC Channel? Document how to get help and interact with the community around a project. Django_ does a great job with this.
+Список рассылки? Канал IRC? Опишите как получить помощь и связаться с сообществом вокруг проекта. У Django_ сделано очень хорошо.
 
 .. _Django: https://docs.djangoproject.com/en/1.8/faq/help
 
 
 
-Information for people who want to contribute back
+Информация для тех, кто хочет внести свой вклад
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-People usually have standards for how they expect things to be done in their projects. You should document these so that if people write code, they can do things in the norm of the project. `Open Comparison`_ does a great job of this.
+У людей есть определенные стандарты, по которым создаётся проект. Опишите их, чтобы люди, пишущие код, писали его по стандартам проекта. Круто сделано у `Open Comparison`_.
 
 .. _Open Comparison: http://opencomparison.readthedocs.org/en/latest/contributing.html
 
 
-Installation instructions
+Инструкции по установке
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Once people figure out whether they want to use your code or not, they need to know how to actually get it and make it run. Hopefully your install instructions should be a couple lines for the basic case. A page that gives more information and caveats should be linked from here if necessary. I think at `Read the Docs`_ we do a good job with this.
+Как только люди решат использовать ваш проект, им надо будет как-то его получить и запустить. В идеале, инструкция по установке должна занимать пару строк для общего случая. Если необходимо, там же можно разместить ссылку на страницу с более подробной информацией. Я думаю у нас в `Read the Docs`_ получилось неплохо.
 
 .. _Read the Docs: http://read-the-docs.readthedocs.org/en/latest/install.html
 
 
-Your project's license
+Лицензия проекта
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-BSD? MIT? GPL? This stuff might not matter to you, but the people who want to use your code will care about this a whole lot. Think about what you want to accomplish with your license, and please only pick one of the standard licenses that you see around the web.
+BSD? MIT? GPL? Может для вас это неважно, но будет очень важно для людей, которые захотят использовать ваш код. Подумайте, чего вы хотите добиться лицензией и, пожалуйста, выберите одну из стандартных лицензий, которые широко используются в сети.
 
 .. _template:
 
 
-Next Steps
+Дальнейшие шаги
 ----------
 
-After you follow the above guide,
-we know your project will be successful!
-For further reading,
-check out this post on `how to maintain an open source project`_.
+Мы знаем, что ваш проект ждёт успех, после того как вы последуете вышеизложенному гиду. Дальше можно почитать это пост о `поддержке опенсорсных проектов`_.
 
-.. _how to maintain an open source project: https://medium.com/p/aaa2a5437d3a
+.. _поддержке опенсорсных проектов: https://medium.com/p/aaa2a5437d3a
 
-Template
+Шаблон
 --------
 
-A simple template for you to start with,
-for your ``README``.
-Name the file ``README.md`` if you want to use markdown,
-or ``README.rst`` if you want to use reStructuredText.
-More information about these can be found in the :ref:`sidebar on markup <markup_languages>`.
+Простой шаблон для вашего ``README``, чтобы было с чего начать. Назовите файл ``README.md``, если хотите использовать Markdown, или ``README.rst``, если хотите использовать reStructuredText.
+Больше инфы о них, можно найти в :ref:`замечании о разметке <markup_languages>`.
 
 ::
 
